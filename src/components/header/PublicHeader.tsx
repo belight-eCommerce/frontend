@@ -156,6 +156,7 @@ export default function PublicHeader() {
             </div>
           </div>
         </div>
+        //header
       )}
     </header>
   );
