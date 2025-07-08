@@ -8,6 +8,7 @@ const QUICK_LINKS = [
   { label: "Become a Seller", href: "/become-a-seller" },
   { label: "Contact", href: "/contact" },
   { label: "FAQ", href: "/faq" },
+  //header
 ];
 
 const CATEGORIES = [
