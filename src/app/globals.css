@@ -1,3 +1,10 @@
+:root {
+  --background: 255 255 255;
+  --foreground: 17 17 17;
+  --primary: 59 130 246;
+  --primary-foreground: 255 255 255;
+}
+
 @import 'tailwindcss';
 @import "tw-animate-css";
 
@@ -868,4 +875,23 @@ span.flatpickr-weekday,
   body {
     @apply bg-background text-foreground;
   }
+}
+:root {
+  --background: 255 255 255;
+  --foreground: 17 17 17;
+  --primary: 39 83 234;
+  --primary-foreground: 255 255 255;
+  /* Add more from your Tailwind config as needed */
+}
+:root {
+  --background: 255 255 255; /* white */
+  --foreground: 17 17 17;    /* dark gray or near black */
+  --primary: 59 130 246;
+  --primary-foreground: 255 255 255;
+}
+
+/* Optional dark theme (if you ever add it later) */
+.dark {
+  --background: 17 17 17;
+  --foreground: 255 255 255;
 }
