@@ -34,7 +34,7 @@ const SOCIALS = [
 
 export default function PublicFooter() {
   return (
-    <footer className="relative w-full bg-black text-white mt-8">
+    <footer className="relative w-full bg-black text-white mt-0">
       <div className="absolute inset-0 z-0">
         <Image src="/banner.png" alt="footer banner" fill className="object-cover w-full h-full opacity-70" />
         <div className="absolute inset-0 bg-red-800/80" />
