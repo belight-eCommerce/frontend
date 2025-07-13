@@ -7,9 +7,9 @@ import { useSidebar } from "../context/SidebarContext";
 import {
   ChevronDownIcon,
   GridIcon,
-  HorizontaLDots,
+  MoreHorizontal,
   UserCircleIcon,
-} from "../icons/index";
+} from "lucide-react";
 
 type NavItem = {
   name: string;
@@ -36,10 +36,10 @@ const othersItems: NavItem[] = [
   }
 ];
 
-const AppSidebar: React.FC = () => {
+export default function AppSidebar() {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
   const pathname = usePathname();
-  
+
   const renderMenuItems = (
     navItems: NavItem[],
     menuType: "main" | "others"
@@ -286,7 +286,7 @@ const AppSidebar: React.FC = () => {
                 {isExpanded || isHovered || isMobileOpen ? (
                   "Menu"
                 ) : (
-                  <HorizontaLDots />
+                  <MoreHorizontal />
                 )}
               </h2>
               {renderMenuItems(navItems, "main")}
@@ -303,7 +303,7 @@ const AppSidebar: React.FC = () => {
                 {isExpanded || isHovered || isMobileOpen ? (
                   "Others"
                 ) : (
-                  <HorizontaLDots />
+                  <MoreHorizontal />
                 )}
               </h2>
               {renderMenuItems(othersItems, "others")}
@@ -319,4 +319,3 @@ const AppSidebar: React.FC = () => {
   );
 };
 
-export default AppSidebar;

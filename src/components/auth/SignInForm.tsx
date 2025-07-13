@@ -3,7 +3,7 @@ import Checkbox from "@/components/form/input/Checkbox";
 import Input from "@/components/form/input/InputField";
 import Button from "@/components/ui/button/Button";
 import { useLogin } from "@/hooks/auth/useAuth";
-import { EyeCloseIcon, EyeIcon } from "@/icons";
+// import { EyeCloseIcon, EyeIcon } from "@/icons";
 import { LoginCredentials, loginFormSchema } from "@/types/Auth";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -13,7 +13,6 @@ import { RequiredInput } from "../common/RequiredInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function SignInForm() {
-  const [showPassword, setShowPassword] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
   const form = useForm<LoginCredentials>({
@@ -65,11 +64,11 @@ export default function SignInForm() {
                         <FormLabel>Password<RequiredInput /></FormLabel>
                         <div className="relative">
                           <Input
-                            type={showPassword ? "text" : "password"}
+                            type="password"
                             placeholder="Enter your password"
                             {...field}
                           />
-                          <span
+                          {/* <span
                             onClick={() => setShowPassword(!showPassword)}
                             className="absolute z-30 -translate-y-1/2 cursor-pointer right-4 top-1/2"
                           >
@@ -78,7 +77,7 @@ export default function SignInForm() {
                             ) : (
                               <EyeCloseIcon className="fill-gray-500 dark:fill-gray-400" />
                             )}
-                          </span>
+                          </span> */}
                         </div>
                         <FormMessage />
                       </FormItem>
