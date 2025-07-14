@@ -1,7 +1,6 @@
 "use client";
 import Input from "@/components/form/input/InputField";
 import Button from "@/components/ui/button/Button";
-import { EyeCloseIcon, EyeIcon } from "@/icons";
 import { resetPasswordFormSchema, ResetPasswordFormValue } from "@/types/Auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
@@ -10,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { useRouter } from "next/navigation";
 import { useResetPassword } from "@/hooks/auth/useAuth";
+import { EyeClosedIcon, EyeIcon } from "lucide-react";
 
 export default function ResetPasswordForm() {
 
@@ -75,7 +75,7 @@ export default function ResetPasswordForm() {
                             {formState.showPassword ? (
                               <EyeIcon className="fill-gray-500 dark:fill-gray-400" />
                             ) : (
-                              <EyeCloseIcon className="fill-gray-500 dark:fill-gray-400" />
+                              <EyeClosedIcon className="fill-gray-500 dark:fill-gray-400" />
                             )}
                           </span>
                         </div>
@@ -103,7 +103,7 @@ export default function ResetPasswordForm() {
                             {formState.showConfirmPassword ? (
                               <EyeIcon className="fill-gray-500 dark:fill-gray-400" />
                             ) : (
-                              <EyeCloseIcon className="fill-gray-500 dark:fill-gray-400" />
+                              <EyeClosedIcon className="fill-gray-500 dark:fill-gray-400" />
                             )}
                           </span>
                         </div>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Button from "@/components/ui/button/Button";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
@@ -13,7 +13,7 @@ const categoryTabs = [
       { name: "Handmade Crafts", img: "/images/product/image11.png" },
       { name: "Pottery", img: "/images/product/image12.png" },
       { name: "Woodwork", img: "/images/product/image13.png" },
-      { name: "Home Decor", img: "/images/product/image14.png" }, 
+      { name: "Home Decor", img: "/images/product/image14.png" },
       { name: "Jewelry", img: "/images/product/image15.png" },
     ],
   },
@@ -161,7 +161,7 @@ export default function HomePage() {
   const [activeTab, setActiveTab] = useState(0);
   const [tabStart, setTabStart] = useState(0);
   const TABS_VISIBLE = 4;
-  const tabListRef = useRef<HTMLDivElement>(null);
+  // const tabListRef = useRef<HTMLDivElement>(null);
 
   const scrollTabs = (dir: 'left' | 'right') => {
     if (dir === 'left' && tabStart > 0) {
@@ -171,136 +171,136 @@ export default function HomePage() {
     }
   };
 
-    return (
+  return (
     <div className="bg-white min-h-screen">
 
 
-{/* Hero Section - Final Version */}
-<section className="relative group w-full h-screen overflow-hidden flex items-center justify-center md:justify-start">
-  {/* Background Image with Ken Burns Effect */}
-  <Image
-    src="/images/product/image.png"
-    alt="Vibrant handmade crafts from Ethiopia"
-    fill
-    className="object-cover object-center z-0 transition-transform duration-[4000ms] ease-in-out group-hover:scale-105"
-    priority
-  />
+      {/* Hero Section - Final Version */}
+      <section className="relative group w-full h-screen overflow-hidden flex items-center justify-center md:justify-start">
+        {/* Background Image with Ken Burns Effect */}
+        <Image
+          src="/images/product/image.png"
+          alt="Vibrant handmade crafts from Ethiopia"
+          fill
+          className="object-cover object-center z-0 transition-transform duration-[4000ms] ease-in-out group-hover:scale-105"
+          priority
+        />
 
-  {/* Strong Gradient Overlay for Readability */}
-  <div 
-    className="absolute inset-0 z-10 
+        {/* Strong Gradient Overlay for Readability */}
+        <div
+          className="absolute inset-0 z-10 
                bg-gradient-to-t from-black/90 via-black/60 to-transparent 
                md:bg-gradient-to-r md:from-black/95 md:via-black/70 md:to-transparent"
-  ></div>
+        ></div>
 
-  {/* Content */}
-  <div className="relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-8">
-    <div className="max-w-xl">
-      
-      
-      <span className="block h-1 w-20 bg-yellow-400 mb-6"></span>
+        {/* Content */}
+        <div className="relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="max-w-xl">
 
-      <h1 className="text-white text-4xl md:text-5xl font-black uppercase tracking-tight mb-4">
-      DISCOVER <br />ETHIOPIA'S ARTISTRY
-      </h1>
 
-      <p className="text-gray-300 text-lg mb-8 max-w-lg">
-        Shop authentic handmade crafts, traditional clothing, and unique creations from passionate artisans across Ethiopia.
-      </p>
+            <span className="block h-1 w-20 bg-yellow-400 mb-6"></span>
 
-      <div className="flex flex-col sm:flex-row gap-4">
-        <Button size="md" variant="primary">Shop Now</Button>
-        <Button size="md" variant="outline">Become a Seller</Button>
-      </div>
-      
-    </div>
-  </div>
-</section>
+            <h1 className="text-white text-4xl md:text-5xl font-black uppercase tracking-tight mb-4">
+              DISCOVER <br />ETHIOPIA&apos;S ARTISTRY
+            </h1>
+
+            <p className="text-gray-300 text-lg mb-8 max-w-lg">
+              Shop authentic handmade crafts, traditional clothing, and unique creations from passionate artisans across Ethiopia.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button size="md" variant="primary">Shop Now</Button>
+              <Button size="md" variant="outline">Become a Seller</Button>
+            </div>
+
+          </div>
+        </div>
+      </section>
 
       {/* Divider */}
       <div className="w-full border-t my-8" />
-        
-<section className="px-6 py-12 max-w-7xl mx-auto">
-  <div className="text-center text-base font-semibold mb-2">
-    <span style={{ color: '#0000FF' }}>EXPLORE BY</span>{' '}
-    <span style={{ color: '#FFC300' }}>CATEGORY</span>
-  </div>
-  <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-8">FROM HANDCRAFTED ITEMS TO <br />DIGITAL DOWNLOADS</h2>
-  <div className="flex items-center justify-center mb-8 gap-2">
-    <button
-      className="p-2 rounded-full bg-white border shadow hover:bg-slate-100 transition disabled:opacity-40"
-      onClick={() => scrollTabs('left')}
-      aria-label="Scroll left"
-      type="button"
-      disabled={tabStart === 0}
-    >
-      <FaChevronLeft size={20} />
-    </button>
-    <div className="flex gap-2 md:gap-4">
-      {categoryTabs.slice(tabStart, tabStart + TABS_VISIBLE).map((tab, idx) => {
-        const realIdx = tabStart + idx;
-        return (
+
+      <section className="px-6 py-12 max-w-7xl mx-auto">
+        <div className="text-center text-base font-semibold mb-2">
+          <span style={{ color: '#0000FF' }}>EXPLORE BY</span>{' '}
+          <span style={{ color: '#FFC300' }}>CATEGORY</span>
+        </div>
+        <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-8">FROM HANDCRAFTED ITEMS TO <br />DIGITAL DOWNLOADS</h2>
+        <div className="flex items-center justify-center mb-8 gap-2">
           <button
-            key={tab.label}
-            className={`text-base font-semibold px-2 py-1 transition focus:outline-none ${activeTab === realIdx ? 'text-black font-bold border-b-2 border-[#FFC300]' : 'text-slate-600 hover:text-black'}`}
-            onClick={() => setActiveTab(realIdx)}
-            style={{ background: 'none', border: 'none' }}
+            className="p-2 rounded-full bg-white border shadow hover:bg-slate-100 transition disabled:opacity-40"
+            onClick={() => scrollTabs('left')}
+            aria-label="Scroll left"
+            type="button"
+            disabled={tabStart === 0}
           >
-            {tab.label}
+            <FaChevronLeft size={20} />
           </button>
-        );
-      })}
-    </div>
-    <button
-      className="p-2 rounded-full bg-white border shadow hover:bg-slate-100 transition disabled:opacity-40"
-      onClick={() => scrollTabs('right')}
-      aria-label="Scroll right"
-      type="button"
-      disabled={tabStart >= categoryTabs.length - TABS_VISIBLE}
-    >
-      <FaChevronRight size={20} />
-    </button>
-  </div>
-  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-10">
-    {categoryTabs[activeTab].categories.map((cat) => (
-      <Link
-        key={cat.name}
-        href={`/category/${cat.name.toLowerCase().replace(/ /g, '-')}`}
-        className="group flex flex-col items-center text-center"
-      >
-        <div
-          className="
+          <div className="flex gap-2 md:gap-4">
+            {categoryTabs.slice(tabStart, tabStart + TABS_VISIBLE).map((tab, idx) => {
+              const realIdx = tabStart + idx;
+              return (
+                <button
+                  key={tab.label}
+                  className={`text-base font-semibold px-2 py-1 transition focus:outline-none ${activeTab === realIdx ? 'text-black font-bold border-b-2 border-[#FFC300]' : 'text-slate-600 hover:text-black'}`}
+                  onClick={() => setActiveTab(realIdx)}
+                  style={{ background: 'none', border: 'none' }}
+                >
+                  {tab.label}
+                </button>
+              );
+            })}
+          </div>
+          <button
+            className="p-2 rounded-full bg-white border shadow hover:bg-slate-100 transition disabled:opacity-40"
+            onClick={() => scrollTabs('right')}
+            aria-label="Scroll right"
+            type="button"
+            disabled={tabStart >= categoryTabs.length - TABS_VISIBLE}
+          >
+            <FaChevronRight size={20} />
+          </button>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-10">
+          {categoryTabs[activeTab].categories.map((cat) => (
+            <Link
+              key={cat.name}
+              href={`/category/${cat.name.toLowerCase().replace(/ /g, '-')}`}
+              className="group flex flex-col items-center text-center"
+            >
+              <div
+                className="
             relative w-full aspect-square 
             bg-slate-100 rounded-2xl
             overflow-hidden
             transition-all duration-300 ease-in-out
             group-hover:shadow-xl group-hover:scale-105
           "
-        >
-          <Image
-            src={cat.img || "/images/product/image.png"}
-            alt={cat.name}
-            fill
-            className="
+              >
+                <Image
+                  src={cat.img || "/images/product/image.png"}
+                  alt={cat.name}
+                  fill
+                  className="
               object-cover 
               transition-transform duration-300 group-hover:scale-110
             "
-          />
-        </div>
-        <span className="
+                />
+              </div>
+              <span className="
           mt-4 font-semibold text-sm text-slate-700 
           transition-colors duration-300 
           group-hover:text-blue-600
         ">
-          {cat.name}
-        </span>
-      </Link>
-    ))}
-  </div>
-</section>
-      
+                {cat.name}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <div className="w-full border-t my-8" />
-      
+
 
       {/* About/Empowerment Section */}
       <section className="flex flex-col md:flex-row items-center gap-8 px-6 py-16 max-w-7xl mx-auto border-t">
@@ -309,8 +309,8 @@ export default function HomePage() {
             <span style={{ color: '#0000FF' }}>ABOUT</span>{' '}
             <span style={{ color: '#FFC300' }}>MAALIIFU</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4">EMPOWERING <br /> ETHIOPIA'S CREATIVE <br /> ECONOMY</h2>
-          <p className="text-gray-600 mb-6">Maaliifu is more than an Online marketplace—it's a movement. We connect Ethiopian artisans, crafters, and small businesses to the global market, turning their creativity into sustainable livelihoods. From handmade pottery to traditional garments, every item on Maaliifu tells a story of heritage, passion, and craftsmanship.</p>
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4">EMPOWERING <br /> ETHIOPIA&apos;S CREATIVE <br /> ECONOMY</h2>
+          <p className="text-gray-600 mb-6">Maaliifu is more than an Online marketplace—it&apos;s a movement. We connect Ethiopian artisans, crafters, and small businesses to the global market, turning their creativity into sustainable livelihoods. From handmade pottery to traditional garments, every item on Maaliifu tells a story of heritage, passion, and craftsmanship.</p>
           <Button size="md" variant="primary">READ MORE</Button>
         </div>
         <div className="flex-1 flex justify-center flex-col items-center">
@@ -321,7 +321,7 @@ export default function HomePage() {
         </div>
       </section>
 
-     
+
       <div className="w-full border-t my-8" />
 
       {/* How It Works */}
@@ -350,7 +350,7 @@ export default function HomePage() {
         </div>
       </section>
 
-     
+
       <div className="w-full border-t my-8" />
 
       {/* Client Reviews */}
