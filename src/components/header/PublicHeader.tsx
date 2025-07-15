@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-// import Image from "next/image";
 import React, { useState } from "react";
 
 const NAV_LINKS = [
@@ -12,10 +11,23 @@ const NAV_LINKS = [
 
 function CartIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" {...props} xmlns="http://www.w3.org/2000/svg">
-      <circle cx="8.5" cy="19" r="1" stroke="currentColor" strokeWidth="1.5"/>
-      <circle cx="16.5" cy="19" r="1" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M2 3h2l2.68 12.39A2 2 0 0 0 8.61 17h7.78a2 2 0 0 0 1.93-1.61L20 6H5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 22 22"
+      fill="none"
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="8.5" cy="19" r="1" stroke="currentColor" strokeWidth="1.5" />
+      <circle cx="16.5" cy="19" r="1" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M2 3h2l2.68 12.39A2 2 0 0 0 8.61 17h7.78a2 2 0 0 0 1.93-1.61L20 6H5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
@@ -47,9 +59,13 @@ export default function PublicHeader() {
     <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-200">
       <div className="mx-auto flex h-20 max-w-5xl items-center justify-between px-6">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 text-2xl font-extrabold tracking-tight text-gray-900">
+        <Link
+          href="/"
+          className="flex items-center gap-2 text-2xl font-extrabold tracking-tight text-gray-900"
+        >
           MAALIIFU
         </Link>
+
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((link) => (
@@ -62,6 +78,7 @@ export default function PublicHeader() {
             </Link>
           ))}
         </nav>
+
         {/* Search and Icons */}
         <div className="flex items-center gap-3">
           {/* Search bar */}
@@ -72,41 +89,84 @@ export default function PublicHeader() {
               className="outline-none border-none bg-transparent px-2 py-1 text-sm w-28"
             />
             <button className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-900 text-white">
-              <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
-                <circle cx="7.5" cy="7.5" r="5.5" stroke="currentColor" strokeWidth="1.5"/>
-                <path d="M13 13L11 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              <svg
+                width="16"
+                height="16"
+                fill="none"
+                viewBox="0 0 16 16"
+              >
+                <circle
+                  cx="7.5"
+                  cy="7.5"
+                  r="5.5"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                />
+                <path
+                  d="M13 13L11 11"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
               </svg>
             </button>
           </div>
+
           {/* Cart icon */}
-          <Link href="/cart" className="ml-2 flex items-center justify-center w-9 h-9 rounded-full border border-gray-300 hover:bg-gray-100 transition">
+          <Link
+            href="/cart"
+            className="ml-2 flex items-center justify-center w-9 h-9 rounded-full border border-gray-300 hover:bg-gray-100 transition"
+          >
             <CartIcon className="w-5 h-5 text-gray-700" />
           </Link>
+
           {/* User icon */}
-          <Link href="/account" className="flex items-center justify-center w-9 h-9 rounded-full border border-gray-300 hover:bg-gray-100 transition">
+          <Link
+            href="/account"
+            className="flex items-center justify-center w-9 h-9 rounded-full border border-gray-300 hover:bg-gray-100 transition"
+          >
             <UserIcon className="w-5 h-5 text-gray-700" />
           </Link>
+
           {/* Mobile menu button */}
           <button
             className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 md:hidden focus:outline-none focus:ring-2 focus:ring-blue-800"
             aria-label="Open menu"
             onClick={() => setMobileMenuOpen(true)}
           >
-            <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
-              <path stroke="currentColor" strokeWidth="2" strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16" />
+            <svg
+              width="28"
+              height="28"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             </svg>
           </button>
         </div>
       </div>
+
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-black/40 md:hidden" onClick={() => setMobileMenuOpen(false)}>
+        <div
+          className="fixed inset-0 z-50 bg-black/40 md:hidden"
+          onClick={() => setMobileMenuOpen(false)}
+        >
           <div
             className="absolute right-0 top-0 h-full w-4/5 max-w-xs bg-white shadow-lg flex flex-col p-6 gap-6 animate-slide-in"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-4">
-              <Link href="/" className="flex items-center gap-2 text-2xl font-extrabold tracking-tight text-gray-900" onClick={() => setMobileMenuOpen(false)}>
+              <Link
+                href="/"
+                className="flex items-center gap-2 text-2xl font-extrabold tracking-tight text-gray-900"
+                onClick={() => setMobileMenuOpen(false)}
+              >
                 MAALIIFU
               </Link>
               <button
@@ -114,8 +174,18 @@ export default function PublicHeader() {
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Close menu"
               >
-                <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" strokeWidth="2" strokeLinecap="round" d="M6 6l12 12M6 18L18 6" />
+                <svg
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    d="M6 6l12 12M6 18L18 6"
+                  />
                 </svg>
               </button>
             </div>
@@ -132,10 +202,16 @@ export default function PublicHeader() {
               ))}
             </nav>
             <div className="flex gap-4 mt-6">
-              <Link href="/cart" className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 hover:bg-gray-100 transition">
+              <Link
+                href="/cart"
+                className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 hover:bg-gray-100 transition"
+              >
                 <CartIcon className="w-5 h-5 text-gray-700" />
               </Link>
-              <Link href="/account" className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 hover:bg-gray-100 transition">
+              <Link
+                href="/account"
+                className="flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 hover:bg-gray-100 transition"
+              >
                 <UserIcon className="w-5 h-5 text-gray-700" />
               </Link>
             </div>
@@ -147,17 +223,32 @@ export default function PublicHeader() {
                   className="outline-none border-none bg-transparent px-2 py-1 text-sm w-full"
                 />
                 <button className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-900 text-white">
-                  <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
-                    <circle cx="7.5" cy="7.5" r="5.5" stroke="currentColor" strokeWidth="1.5"/>
-                    <path d="M13 13L11 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="none"
+                    viewBox="0 0 16 16"
+                  >
+                    <circle
+                      cx="7.5"
+                      cy="7.5"
+                      r="5.5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    />
+                    <path
+                      d="M13 13L11 11"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                    />
                   </svg>
                 </button>
               </div>
             </div>
           </div>
         </div>
-        //header
       )}
     </header>
   );
-} 
+}
