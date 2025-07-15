@@ -1,16 +1,48 @@
 "use client";
-// import Chart from "react-apexcharts";
+import type { Props as ApexChartProps } from "react-apexcharts";
+import React from "react";
 import { ApexOptions } from "apexcharts";
 
-import dynamic from "next/dynamic";
+import { createSafeDynamicImport } from "@/lib/dynamicImport";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { MoreDotIcon } from "@/icons";
 import { useState } from "react";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
-// Dynamically import the ReactApexChart component
-const ReactApexChart = dynamic(() => import("react-apexcharts"), {
-  ssr: false,
-});
+
+// Loading component
+const ChartLoading = () => (
+  <div className="flex items-center justify-center h-[330px]">
+    <div className="text-center">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></div>
+      <p className="text-gray-500">Loading chart...</p>
+    </div>
+  </div>
+);
+
+// Fallback component
+const ChartFallback = () => (
+  <div className="flex items-center justify-center h-[330px]">
+    <div className="text-center">
+      <p className="text-red-500 mb-2">Failed to load chart</p>
+      <button 
+        onClick={() => window.location.reload()} 
+        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+      >
+        Retry
+      </button>
+    </div>
+  </div>
+);
+
+// Dynamically import the ReactApexChart component with better error handling
+const ReactApexChart = createSafeDynamicImport<ApexChartProps>(
+  () => import("react-apexcharts").then(mod => ({ default: mod.default })),
+  {
+    ssr: false,
+    loading: ChartLoading,
+    fallback: ChartFallback,
+  }
+);
 
 export default function MonthlyTarget() {
   const series = [75.55];
@@ -112,12 +144,13 @@ export default function MonthlyTarget() {
         </div>
         <div className="relative ">
           <div className="max-h-[330px]">
-            <ReactApexChart
-              options={options}
-              series={series}
-              type="radialBar"
-              height={330}
-            />
+            {ReactApexChart &&
+              <ReactApexChart
+                options={options}
+                series={series}
+                type="radialBar"
+                height={330}
+              />}
           </div>
 
           <span className="absolute left-1/2 top-full -translate-x-1/2 -translate-y-[95%] rounded-full bg-success-50 px-3 py-1 text-xs font-medium text-success-600 dark:bg-success-500/15 dark:text-success-500">

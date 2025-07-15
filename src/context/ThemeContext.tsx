@@ -38,6 +38,11 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, [theme, isInitialized]);
 
+  // Prevent hydration mismatch by not rendering until initialized
+  if (!isInitialized) {
+    return <div className="min-h-screen bg-background text-foreground antialiased">{children}</div>;
+  }
+
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };

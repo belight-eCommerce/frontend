@@ -161,7 +161,7 @@ export default function HomePage() {
   const [activeTab, setActiveTab] = useState(0);
   const [tabStart, setTabStart] = useState(0);
   const TABS_VISIBLE = 4;
-  // const tabListRef = useRef<HTMLDivElement>(null);
+  const tabListRef = useRef<HTMLDivElement>(null);
 
   const scrollTabs = (dir: 'left' | 'right') => {
     if (dir === 'left' && tabStart > 0) {
@@ -200,9 +200,9 @@ export default function HomePage() {
 
             <span className="block h-1 w-20 bg-yellow-400 mb-6"></span>
 
-            <h1 className="text-white text-4xl md:text-5xl font-black uppercase tracking-tight mb-4">
-              DISCOVER <br />ETHIOPIA&apos;S ARTISTRY
-            </h1>
+      <h1 className="text-white text-4xl md:text-5xl font-black uppercase tracking-tight mb-4">
+      DISCOVER <br />ETHIOPIA'S ARTISTRY
+      </h1>
 
             <p className="text-gray-300 text-lg mb-8 max-w-lg">
               Shop authentic handmade crafts, traditional clothing, and unique creations from passionate artisans across Ethiopia.

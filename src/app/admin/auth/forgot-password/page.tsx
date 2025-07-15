@@ -1,11 +1,9 @@
-import ForgotPasswordForm from "@/components/auth/ForgotPasswordForm";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Forgot Password Page",
-  description: "This is Forgot Password Page Admin Dashboard",
-};
-
-export default function ForgotPassword() {
-  return <ForgotPasswordForm />;
+export default function ForgotPasswordForm() {
+  try {
+    console.log("ForgotPasswordForm rendered ✅");
+    return <div>Form goes here</div>; // your real form code
+  } catch (err) {
+    console.error("❌ ForgotPasswordForm failed:", err);
+    return <div>Error in form</div>;
+  }
 }
