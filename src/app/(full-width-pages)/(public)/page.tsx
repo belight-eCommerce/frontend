@@ -263,10 +263,11 @@ export default function HomePage() {
       {/* ... (Hero Section) ... */}
       <section className="relative min-h-[70vh] md:min-h-[80vh] lg:min-h-screen flex items-center justify-center overflow-hidden group">
         <Image src="/images/product/image.png" alt="Ethiopian Artistry" fill priority className="object-cover object-center z-0 transition-transform duration-[4000ms] ease-in-out group-hover:scale-105"/>
+        <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/90 via-black/70 to-transparent z-10" />
         <div className="relative z-20 w-full px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="max-w-xl md:max-w-2xl py-10 sm:py-16 md:py-24">
             <span className="block h-1 w-20 bg-yellow-400 mb-6"></span>
-            <h1 className="text-white text-4xl md:text-5xl font-black uppercase tracking-tight mb-4">Discover <br /> Ethiopia's Artistry</h1>
+            <h1 className="text-white text-4xl md:text-5xl font-black uppercase tracking-tight mb-4">Discover <br /> Ethiopia&#39;s Artistry</h1>
             <p className="text-gray-300 text-base sm:text-lg md:text-xl mb-8 text-center md:text-left max-w-lg">Shop authentic handmade crafts, traditional clothing, and unique creations from passionate artisans across Ethiopia.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start w-full sm:w-auto">
               <Button size="md" variant="primary" className="w-full sm:w-auto">Shop Now</Button>
@@ -381,8 +382,8 @@ export default function HomePage() {
             <span style={{ color: '#0000FF' }}>ABOUT</span>{' '}
             <span style={{ color: '#FFC300' }}>MAALIIFU</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4">EMPOWERING <br /> ETHIOPIA'S CREATIVE <br /> ECONOMY</h2>
-          <p className="text-gray-600 mb-6">Maaliifu is more than an Online marketplace—it's a movement. We connect Ethiopian artisans, crafters, and small businesses to the global market, turning their creativity into sustainable livelihoods. From handmade pottery to traditional garments, every item on Maaliifu tells a story of heritage, passion, and craftsmanship.</p>
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4">EMPOWERING <br /> ETHIOPIA&#39;S CREATIVE <br /> ECONOMY</h2>
+          <p className="text-gray-600 mb-6">Maaliifu is more than an Online marketplace—it&#39;s a movement. We connect Ethiopian artisans, crafters, and small businesses to the global market, turning their creativity into sustainable livelihoods. From handmade pottery to traditional garments, every item on Maaliifu tells a story of heritage, passion, and craftsmanship.</p>
           <Button size="md" variant="primary">READ MORE</Button>
         </div>
         <div className="flex-1 flex justify-center flex-col items-center">
