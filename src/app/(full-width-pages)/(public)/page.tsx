@@ -262,7 +262,7 @@ export default function HomePage() {
     <main className="bg-white min-h-screen w-full">
       {/* ... (Hero Section) ... */}
       <section className="relative min-h-[70vh] md:min-h-[80vh] lg:min-h-screen flex items-center justify-center overflow-hidden group">
-        <Image src="/images/product/image.png" alt="Ethiopian Artistry" fill priority className="object-cover object-center z-0 transition-transform duration-[4000ms] ease-in-out group-hover:scale-105"/>
+        <Image src="/images/product/image1212.png" alt="Ethiopian Artistry" fill priority className="object-cover object-center z-0 transition-transform duration-[4000ms] ease-in-out group-hover:scale-105"/>
         <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/90 via-black/70 to-transparent z-10" />
         <div className="relative z-20 w-full px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="max-w-xl md:max-w-2xl py-10 sm:py-16 md:py-24">
