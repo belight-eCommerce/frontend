@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 import { useResetPassword } from "@/hooks/auth/useAuth";
 import { EyeClosedIcon, EyeIcon } from "lucide-react";
 
-export default function ResetPasswordForm() {
+export default function ResetPasswordForm({ customHeading = true }: { customHeading?: boolean }) {
 
   const router = useRouter();
   const { mutate, isPending } = useResetPassword();
@@ -45,14 +45,16 @@ export default function ResetPasswordForm() {
     <div className="flex flex-col flex-1 lg:w-1/2 w-full">
       <div className="flex flex-col justify-center flex-1 w-full max-w-md mx-auto">
         <div>
-          <div className="mb-5 sm:mb-8">
-            <h1 className="mb-2 font-semibold text-gray-800 text-title-sm dark:text-white/90 sm:text-title-md">
-              Reset Password
-            </h1>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Enter new password to reset!
-            </p>
-          </div>
+          {customHeading && (
+            <div className="mb-5 sm:mb-8">
+              <h1 className="mb-2 font-semibold text-gray-800 text-title-sm dark:text-white/90 sm:text-title-md">
+                Reset Password
+              </h1>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Enter new password to reset!
+              </p>
+            </div>
+          )}
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <div className="space-y-6">
@@ -112,14 +114,16 @@ export default function ResetPasswordForm() {
                     </FormItem>
                   )}
                 />
-                <div className="flex items-center justify-between">
-                  <Link
-                    href="/signin"
-                    className="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400"
-                  >
-                    Go back to login
-                  </Link>
-                </div>
+                {customHeading && (
+                  <div className="flex items-center justify-between">
+                    <Link
+                      href="/signin"
+                      className="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400"
+                    >
+                      Go back to login
+                    </Link>
+                  </div>
+                )}
                 <div>
                   <Button className="w-full" size="sm" disabled={isPending} type="submit">
                     {isPending ? "Resetting..." : "Reset Password"}
@@ -127,7 +131,6 @@ export default function ResetPasswordForm() {
                 </div>
               </div>
             </form>
-
           </Form>
         </div>
       </div>
