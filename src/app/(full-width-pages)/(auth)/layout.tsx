@@ -11,7 +11,7 @@ export default function AuthLayout({
   return (
     <ThemeProvider>
       <QueryProvider>
-        <div className="min-h-screen w-full flex items-center justify-center bg-white dark:bg-gray-900 p-4">
+        <div className="min-h-screen w-full items-center justify-center">
           {children}
         </div>
       </QueryProvider>
