@@ -6,18 +6,12 @@ import { QueryProvider } from "@/providers/QueryProvider";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { usePathname } from "next/navigation";
 
 export default function AuthLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
-  // If on reset-password page, render only children (no template)
-  if (pathname && pathname.includes("/reset-password")) {
-    return <>{children}</>;
-  }
   return (
     <div className="relative p-6 bg-white z-1 dark:bg-gray-900 sm:p-0">
       <ThemeProvider>
