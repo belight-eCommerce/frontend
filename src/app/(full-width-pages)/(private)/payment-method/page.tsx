@@ -14,7 +14,7 @@ const initialMethod: PaymentMethod = {
   cardNumber: "123 Bole Street, Addis Ababa",
 };
 
-export default function PaymentMethodsPage() {
+export default function PaymentMethodPage() {
   const [methods, setMethods] = useState<PaymentMethod[]>([initialMethod]);
   const [form, setForm] = useState<PaymentMethod>(initialMethod);
   const [isEditing, setIsEditing] = useState(false);
