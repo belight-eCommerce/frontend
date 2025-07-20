@@ -81,11 +81,9 @@ const MAX_PRICE = 1400;
 const PRODUCTS_PER_PAGE = 8;
 
 const Category = () => {
-
   const category = "Jewelry";
   const products = placeholderProducts;
   const categoryGroups = placeholderCategoryGroups;
-
   // State for selected subcategory
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
   // State for filter sidebar toggle
@@ -156,7 +154,7 @@ const Category = () => {
       {/* Sidebar (Filters) */}
       <aside
         className={`
-          fixed md:static top-0 left-0 z-40 h-full md:h-auto w-80 md:w-64 bg-white border-r border-gray-200 p-4 md:p-6 flex-shrink-0 max-h-[80vh] rounded-lg flex flex-col
+          fixed md:static top-[5rem] left-0 z-40 h-[calc(100vh-5rem)] md:h-auto w-80 md:w-64 bg-white border-r border-gray-200 p-4 md:p-6 flex-shrink-0 max-h-[80vh] rounded-lg flex flex-col
           transition-all duration-300 ease-in-out
           ${sidebarAnim}
           md:translate-x-0 md:opacity-100
@@ -175,7 +173,7 @@ const Category = () => {
           </button>
         </div>
         {/* Scrollable Categories */}
-        <div className="mb-8 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" style={{ maxHeight: 'calc(60vh)' }}>
+        <div className="mb-8 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" style={{maxHeight: 'calc(60vh)'}}>
           <h3 className="font-semibold text-lg mb-4">Categories</h3>
           <div className="space-y-4">
             {categoryGroups.map((group) => (
@@ -241,7 +239,7 @@ const Category = () => {
       </aside>
       {/* Overlay for mobile when filters are open */}
       <div
-        className={`fixed inset-0 bg-black/30 z-30 md:hidden transition-opacity duration-300 ${overlayAnim}`}
+        className={`fixed inset-x-0 top-[5rem] bottom-0 bg-black/30 z-30 md:hidden transition-opacity duration-300 ${overlayAnim}`}
         onClick={() => setShowFilters(false)}
         aria-label="Close filters overlay"
       />
@@ -348,9 +346,9 @@ const Category = () => {
                   fill
                   className="object-cover"
                 />
-                {/* Example: Wishlist icon */}
+               
                 <button className="absolute top-2 right-2 bg-white/80 rounded-full p-1 shadow hover:bg-white">
-                  <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 21C12 21 4 13.5 4 8.5C4 5.42 6.42 3 9.5 3C11.24 3 12.91 3.81 14 5.08C15.09 3.81 16.76 3 18.5 3C21.58 3 24 5.42 24 8.5C24 13.5 16 21 16 21H12Z" /></svg>
+                  <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 21C12 21 4 13.5 4 8.5C4 5.42 6.42 3 9.5 3C11.24 3 12.91 3.81 14 5.08C15.09 3.81 16.76 3 18.5 3C21.58 3 24 5.42 24 8.5C24 13.5 16 21 16 21H12Z"/></svg>
                 </button>
               </div>
               <div className="p-4 flex-1 flex flex-col">
