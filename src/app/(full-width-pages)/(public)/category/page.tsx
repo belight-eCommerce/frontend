@@ -21,12 +21,6 @@ interface CategoryGroup {
   subcategories: string[];
 }
 
-interface CategoryPageProps {
-  category: string;
-  products: Product[];
-  categoryGroups: CategoryGroup[];
-}
-
 const placeholderProducts: Product[] = [
   // Jewelry (8)
   { id: 1, name: "Pearl Drop Necklace", price: "$119.00", image: "/images/product/image11.png", subcategory: "Jewelry", available: true, priceValue: 119 },
@@ -86,11 +80,12 @@ const MIN_PRICE = 10;
 const MAX_PRICE = 1400;
 const PRODUCTS_PER_PAGE = 8;
 
-const Category: React.FC<Partial<CategoryPageProps>> = ({
-  category = "Jewelry",
-  products = placeholderProducts,
-  categoryGroups = placeholderCategoryGroups,
-}) => {
+const Category = () => {
+
+  const category = "Jewelry";
+  const products = placeholderProducts;
+  const categoryGroups = placeholderCategoryGroups;
+
   // State for selected subcategory
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
   // State for filter sidebar toggle
@@ -180,7 +175,7 @@ const Category: React.FC<Partial<CategoryPageProps>> = ({
           </button>
         </div>
         {/* Scrollable Categories */}
-        <div className="mb-8 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" style={{maxHeight: 'calc(60vh)'}}>
+        <div className="mb-8 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" style={{ maxHeight: 'calc(60vh)' }}>
           <h3 className="font-semibold text-lg mb-4">Categories</h3>
           <div className="space-y-4">
             {categoryGroups.map((group) => (
@@ -355,7 +350,7 @@ const Category: React.FC<Partial<CategoryPageProps>> = ({
                 />
                 {/* Example: Wishlist icon */}
                 <button className="absolute top-2 right-2 bg-white/80 rounded-full p-1 shadow hover:bg-white">
-                  <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 21C12 21 4 13.5 4 8.5C4 5.42 6.42 3 9.5 3C11.24 3 12.91 3.81 14 5.08C15.09 3.81 16.76 3 18.5 3C21.58 3 24 5.42 24 8.5C24 13.5 16 21 16 21H12Z"/></svg>
+                  <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 21C12 21 4 13.5 4 8.5C4 5.42 6.42 3 9.5 3C11.24 3 12.91 3.81 14 5.08C15.09 3.81 16.76 3 18.5 3C21.58 3 24 5.42 24 8.5C24 13.5 16 21 16 21H12Z" /></svg>
                 </button>
               </div>
               <div className="p-4 flex-1 flex flex-col">
