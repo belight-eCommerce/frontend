@@ -3,10 +3,10 @@
 // import { PromoCodeSection } from "@/app/cart-page/components/promo-code-section"
 // import { mockCartItems } from "@/app/cart-page/lib/data"
 
-import { CartItemCard } from "./components/cart-item-card"
-import {OrderSummaryCard} from "./components/order-summary-card"
-import { PromoCodeSection } from "./components/promo-code-section"
-import {mockCartItems} from "./lib/data"
+import { CartItemCard } from "../../../../components/carts/cart-item-card"
+import {OrderSummaryCard} from "../../../../components/carts/order-summary-card"
+import { PromoCodeSection } from "../../../../components/carts/promo-code-section"
+import {mockCartItems} from "../../../../lib/cart/data"
 
 export default function ShoppingCartPage() {
   // Calculate subtotal from mock items

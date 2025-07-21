@@ -6,7 +6,7 @@ import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import type { CartItem } from "@/app/(full-width-pages)/(public)/cart/lib/data"
+import type { CartItem } from "@/lib/cart/data"
 
 interface CartItemCardProps {
   item: CartItem
