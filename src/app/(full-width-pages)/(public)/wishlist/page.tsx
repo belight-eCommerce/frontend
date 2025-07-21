@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 
 const wishlistData = [
   {
@@ -66,10 +67,13 @@ const Wishlist: React.FC = () => {
         {filteredWishlist.map(item => (
           <div key={item.id} className="flex flex-col">
             <div className="w-full aspect-[4/5] bg-gray-100 rounded-lg overflow-hidden mb-3">
-              <img
+              <Image
                 src={item.image}
                 alt={item.name}
                 className="w-full h-full object-cover"
+                width={400}
+                height={500}
+                style={{ width: '100%', height: '100%' }}
               />
             </div>
             <div className="text-xs text-gray-500 mb-1">{item.category}</div>
