@@ -43,7 +43,6 @@ const categories = ["Jewelry", "Handmade crafts", "Pottery", "Woodwork", "Home d
 const Wishlist: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState("Jewelry");
 
-  
   const filteredWishlist = wishlistData.filter(item => item.category === selectedCategory);
 
   return (
@@ -70,9 +69,11 @@ const Wishlist: React.FC = () => {
               <Image
                 src={item.image}
                 alt={item.name}
+                width={300}
+                height={375}
                 className="w-full h-full object-cover"
-                width={400}
-                height={500}
+                sizes="(max-width: 768px) 100vw, 25vw"
+                priority={item.id === 1}
                 style={{ width: '100%', height: '100%' }}
               />
             </div>
@@ -87,4 +88,4 @@ const Wishlist: React.FC = () => {
   );
 };
 
-export default Wishlist; 
+export default Wishlist;
