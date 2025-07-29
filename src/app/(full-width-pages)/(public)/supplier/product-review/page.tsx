@@ -135,7 +135,6 @@ export default function SupplierProductReviewPage() {
                   text={review.text}
                   date={review.date}
                   action={review.action}
-                  status={review.status}
                 />
               ))
             ) : (

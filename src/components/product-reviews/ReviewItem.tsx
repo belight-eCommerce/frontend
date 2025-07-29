@@ -10,7 +10,6 @@ interface ReviewItemProps {
   text: string;
   date: string;
   action: string;
-  status: string;
 }
 
 export default function ReviewItem({ 
@@ -19,8 +18,7 @@ export default function ReviewItem({
   rating, 
   text, 
   date, 
-  action, 
-  status 
+  action 
 }: ReviewItemProps) {
   return (
     <div className="bg-white rounded-lg shadow-sm p-4 border border-gray-200">
