@@ -30,6 +30,18 @@ export default function ProductAnalysisPage() {
   const viewsPoints = getPoints(rawViewsData);
   const salesPoints = getPoints(rawSalesData);
 
+  // Data for Conversion Rate (visually matching the bar heights in your image)
+  // Assuming a max of 80% on the Y-axis for scaling
+  const conversionRateData = [
+    45, // Mon (Approximate percentage for visual matching)
+    60, // Tue
+    35, // Wed
+    75, // Thu
+    50, // Fri
+    65, // Sat
+    40, // Sun
+  ];
+
   return (
     <div className="w-full px-4 md:px-6 lg:px-8">
       <div className="mb-8">
@@ -90,28 +102,33 @@ export default function ProductAnalysisPage() {
           </div>
         </div>
 
-        {/* Conversion Rate Chart (Simulated Bars - unchanged) */}
+        {/* Conversion Rate Chart (Recreated based on image) */}
         <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md border border-gray-200">
           <h3 className="text-xl font-semibold mb-4 text-gray-800">Conversion Rate</h3>
           <div className="relative h-48">
-             {/* Y-axis labels */}
-             <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-gray-500 pr-2">
-              <span>65°C</span>
-              <span>45°C</span>
-              <span>30°C</span>
-              <span>0°C</span>
+            {/* Y-axis labels - Adjusted to represent a percentage scale */}
+            <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-gray-500 pr-2">
+              <span>80%</span> {/* Adjusted based on perceived max in the image */}
+              <span>60%</span>
+              <span>40%</span>
+              <span>20%</span>
+              <span>0%</span>
             </div>
             {/* Chart Area */}
             <div className="ml-8 h-full flex items-end justify-around relative">
               {/* Grid lines */}
               <div className="absolute inset-0 border-t border-r border-dashed border-gray-200"></div>
-              {/* Simulated bars */}
-              {productData.map((item, _index) => (
-  <tr key={_index} className="..." >
-    ...
-  </tr>
-))}
-
+              {/* Bars based on conversionRateData - Styling to match image */}
+              {conversionRateData.map((rate, index) => (
+                <div
+                  key={index}
+                  className="bg-[#1D4ED8] rounded-t-md flex-1 mx-1" // Darker blue color like in the image
+                  style={{
+                    height: `${(rate / 80) * 100}%`, // Scaled to the new max Y-axis value
+                    maxWidth: '20px', // Adjust width if needed for spacing
+                  }}
+                ></div>
+              ))}
             </div>
             {/* X-axis labels */}
             <div className="absolute bottom-0 left-8 right-0 flex justify-around text-xs text-gray-500 pt-2">
