@@ -8,7 +8,7 @@ import { Inter } from 'next/font/google';
 import PublicHeader from '../components/header/PublicHeader';
 
 // PublicFooter component is in src/components/footer/PublicFooter.tsx
-import PublicFooter from '../components/header/PublicFooter';
+import PublicFooter from '../components/footer/PublicFooter';
 
 
 const inter = Inter({ subsets: ['latin'] });

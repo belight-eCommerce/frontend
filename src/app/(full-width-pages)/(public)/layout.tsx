@@ -1,5 +1,4 @@
-import PublicHeader from "@/components/header/PublicHeader";
-import PublicFooter from "@/components/header/PublicFooter";
+"use client";
 import { ThemeProvider } from "@/context/ThemeContext";
 
 export default function Layout({ children }: {
@@ -8,11 +7,10 @@ export default function Layout({ children }: {
     return (
         <ThemeProvider>
             <div className="flex flex-col min-h-screen">
-                <PublicHeader />
+                {/* The children of this layout will automatically inherit the header and footer from the root layout. */}
                 <main className="flex-1 grid">
                     {children}
                 </main>
-                <PublicFooter />
             </div>
         </ThemeProvider>
     )

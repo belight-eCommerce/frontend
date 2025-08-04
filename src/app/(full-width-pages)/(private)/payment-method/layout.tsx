@@ -1,5 +1,5 @@
 import PublicHeader from "@/components/header/PublicHeader";
-import PublicFooter from "@/components/header/PublicFooter";
+import PublicFooter from "@/components/footer/PublicFooter";
 import { ThemeProvider } from "@/context/ThemeContext";
 
 export default function PaymentMethodLayout({
