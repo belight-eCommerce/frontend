@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { LoginFormValues } from "@/app/(full-width-pages)/(public)/supplier/login/page";
-import { SupplierRegistrationFormValues } from "@/app/(full-width-pages)/(public)/supplier/registration/page";
+import { LoginFormValues } from "@/app/supplier/login/page";
+import { SupplierRegistrationFormValues } from "@/app/supplier/registration/page";
 import { BuyerSignUpForm } from "@/components/auth/SignUpForm";
 import axiosClient from "@/config/axiosClient";
 import { LoginCredentials, LoginResponse } from "@/types/Auth";
