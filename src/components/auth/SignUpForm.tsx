@@ -164,7 +164,7 @@ export default function SignUpForm() {
                   <FormLabel>Phone</FormLabel>
                   <FormControl>
                     <Input
-                      type="tell"
+                      type="tel"
                       placeholder="Enter your phone number"
                       {...field}
                     />
