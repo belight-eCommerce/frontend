@@ -1,73 +1,64 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Button from "@/components/ui/button/Button";
-import Select from "@/components/form/Select";
-import Checkbox from "@/components/form/input/Checkbox";
+import { Eye, EyeOff } from "lucide-react";
+import { useRegisterSupplier } from "@/hooks/auth/useAuth";
+import { useRouter } from "next/navigation";
 
-const categories = [
-  { value: "handmade", label: "Handmade Crafts" },
-  { value: "pottery", label: "Pottery" },
-  { value: "woodwork", label: "Woodwork" },
-  { value: "decor", label: "Home Decor" },
-  { value: "jewelry", label: "Jewelry" },
-  // Add more as needed
-];
-
-const countries = [
-  { value: "us", label: "United States" },
-  { value: "uk", label: "United Kingdom" },
-  { value: "et", label: "Ethiopia" },
-  { value: "de", label: "Germany" },
-  { value: "fr", label: "France" },
-  // Add more as needed
-];
-
+// Define the schema for the new data structure
 const supplierRegistrationSchema = z.object({
-  brandName: z.string()
-    .min(2, "Brand name must be at least 2 characters")
-    .regex(/^[A-Za-z0-9 ]+$/, "Brand name can only contain letters and numbers"),
-  fullName: z.string()
-    .min(2, "Full name must be at least 2 characters")
-    .regex(/^[A-Za-z ]+$/, "Full name can only contain letters (A-Z, a-z)"),
+  firstName: z.string()
+    .min(2, "First name must be at least 2 characters")
+    .regex(/^[A-Za-z ]+$/, "First name can only contain letters"),
+  lastName: z.string()
+    .min(2, "Last name must be at least 2 characters")
+    .regex(/^[A-Za-z ]+$/, "Last name can only contain letters"),
   email: z.string().email("Please enter a valid email address"),
   phone: z.string().min(5, "Please enter a valid phone number"),
   password: z.string().min(8, "Password must be at least 8 characters"),
-  confirmPassword: z.string().min(8, "Confirm Password must be at least 8 characters"),
-  category: z.string().min(1, "Please select a category"),
-  country: z.string().min(1, "Please select a country"),
-  agree: z.boolean().refine(val => val === true, { message: "You must agree to the terms" }),
+  confirmPassword: z.string().min(8, "Confirm Password must be at least 8 characters").optional(),
+  role: z.literal("seller"),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords do not match",
   path: ["confirmPassword"],
 });
 
-type SupplierRegistrationFormValues = z.infer<typeof supplierRegistrationSchema>;
+// Infer the type from the schema for type safety
+export type SupplierRegistrationFormValues = z.infer<typeof supplierRegistrationSchema>;
 
+// The `useForm` hook now uses the updated schema
+// and default values that match the new structure.
 export default function SupplierRegistrationPage() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { mutate: register, isPending } = useRegisterSupplier();
+  const router = useRouter();
+
   const form = useForm<SupplierRegistrationFormValues>({
     resolver: zodResolver(supplierRegistrationSchema),
     defaultValues: {
-      brandName: "",
-      fullName: "",
+      firstName: "",
+      lastName: "",
       email: "",
       phone: "",
       password: "",
       confirmPassword: "",
-      category: "",
-      country: "",
-      agree: false,
+      role: "seller",
     },
   });
 
   const onSubmit = (data: SupplierRegistrationFormValues) => {
-    // TODO: Add submit logic
-    alert("Supplier registration submitted! (Demo)\n" + JSON.stringify(data, null, 2));
+    register(data, {
+      onSuccess: () => {
+        router.push("/supplier/login")
+      }
+    });
   };
 
   return (
@@ -78,12 +69,13 @@ export default function SupplierRegistrationPage() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {/* First Name Field */}
               <FormField
                 control={form.control}
-                name="brandName"
+                name="firstName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Brand Name</FormLabel>
+                    <FormLabel>First Name</FormLabel>
                     <FormControl>
                       <Input placeholder="Type Here" className="bg-white" {...field} />
                     </FormControl>
@@ -91,12 +83,14 @@ export default function SupplierRegistrationPage() {
                   </FormItem>
                 )}
               />
+
+              {/* Last Name Field */}
               <FormField
                 control={form.control}
-                name="fullName"
+                name="lastName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Full Name</FormLabel>
+                    <FormLabel>Last Name</FormLabel>
                     <FormControl>
                       <Input placeholder="Type Here" className="bg-white" {...field} />
                     </FormControl>
@@ -104,6 +98,8 @@ export default function SupplierRegistrationPage() {
                   </FormItem>
                 )}
               />
+
+              {/* Email Field */}
               <FormField
                 control={form.control}
                 name="email"
@@ -117,6 +113,8 @@ export default function SupplierRegistrationPage() {
                   </FormItem>
                 )}
               />
+
+              {/* Phone Number Field */}
               <FormField
                 control={form.control}
                 name="phone"
@@ -130,102 +128,78 @@ export default function SupplierRegistrationPage() {
                   </FormItem>
                 )}
               />
+
+              {/* Password Field */}
               <FormField
                 control={form.control}
                 name="password"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input type="password" placeholder="Type Here" className="bg-white" {...field} />
-                    </FormControl>
+                    <div className="relative">
+                      <FormControl>
+                        <Input
+                          type={showPassword ? "text" : "password"}
+                          placeholder="Type Here"
+                          className="bg-white pr-10" // Add padding for the icon
+                          {...field}
+                        />
+                      </FormControl>
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 focus:outline-none"
+                      >
+                        {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                      </button>
+                    </div>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
+              {/* Confirm Password Field */}
               <FormField
                 control={form.control}
                 name="confirmPassword"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Confirm Password</FormLabel>
-                    <FormControl>
-                      <Input type="password" placeholder="Type Here" className="bg-white" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="category"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Category</FormLabel>
-                    <FormControl>
-                      <Select
-                        options={categories}
-                        placeholder="Select"
-                        onChange={field.onChange}
-                        defaultValue={field.value}
-                        className="bg-white"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="country"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Country</FormLabel>
-                    <FormControl>
-                      <Select
-                        options={countries}
-                        placeholder="Select"
-                        onChange={field.onChange}
-                        defaultValue={field.value}
-                        className="bg-white"
-                      />
-                    </FormControl>
+                    <div className="relative">
+                      <FormControl>
+                        <Input
+                          type={showConfirmPassword ? "text" : "password"}
+                          placeholder="Type Here"
+                          className="bg-white pr-10" // Add padding for the icon
+                          {...field}
+                        />
+                      </FormControl>
+                      <button
+                        type="button"
+                        onClick={() => setShowConfirmPassword((prev) => !prev)}
+                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 focus:outline-none"
+                      >
+                        {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                      </button>
+                    </div>
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
-            <FormField
-              control={form.control}
-              name="agree"
-              render={({ field }) => (
-                <FormItem>
-                  <div className="flex items-center space-x-2 mt-2">
-                    <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onChange={field.onChange}
-                        id="agree"
-                        label="Agree to Terms & Conditions"
-                      />
-                    </FormControl>
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+
             <div className="mt-2">
               <Button
                 type="submit"
                 className="w-64 bg-blue-900 hover:bg-blue-800 text-white rounded-full py-3 text-base font-semibold"
-                disabled={!form.watch("agree")}
+                disabled={isPending}
               >
-                REGISTER AS SUPPLIER
+                {isPending ? "Registering..." : "REGISTER AS SUPPLIER"}
               </Button>
             </div>
           </form>
         </Form>
       </div>
-    </div>
+    </div >
   );
 } 

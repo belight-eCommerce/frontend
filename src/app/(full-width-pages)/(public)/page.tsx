@@ -6,6 +6,7 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 
 const categoryTabs = [
@@ -157,6 +158,7 @@ const variants = {
 
 export default function HomePage() {
   const [[activeTab, direction], setPage] = useState([0, 0]);
+  const router = useRouter();
 
   // State and Ref for the category photo scroller
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -270,8 +272,8 @@ export default function HomePage() {
             <h1 className="text-white text-4xl md:text-5xl font-black uppercase tracking-tight mb-4">Discover <br /> Ethiopia&#39;s Artistry</h1>
             <p className="text-gray-300 text-base sm:text-lg md:text-xl mb-8 text-center md:text-left max-w-lg">Shop authentic handmade crafts, traditional clothing, and unique creations from passionate artisans across Ethiopia.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start w-full sm:w-auto">
-              <Button size="md" variant="primary" className="w-full sm:w-auto">Shop Now</Button>
-              <Button size="md" variant="outline" className="w-full sm:w-auto">Become a Seller</Button>
+              <Button onClick={() => router.push("/supplier/registration")} size="md" variant="primary" className="w-full sm:w-auto">Shop Now</Button>
+              <Button onClick={() => router.push("/supplier/registration")} size="md" variant="outline" className="w-full sm:w-auto">Become a Seller</Button>
             </div>
           </div>
         </div>

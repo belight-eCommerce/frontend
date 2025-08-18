@@ -3,7 +3,7 @@ import { store } from '@/store/store';
 import axios from 'axios';
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL;
-const prefix = '/api'
+const prefix = '/'
 const ARTIFICIAL_DELAY_MS = 1000; // 1 second delay for development
 
 const axiosClient = axios.create({
