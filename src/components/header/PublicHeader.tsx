@@ -124,7 +124,7 @@ export default function PublicHeader() {
                     <p>
                       My Account
                     </p>
-                    <p>{`${user?.firstName || ''} ${user?.lastName}`}</p>
+                    <p>{`${user?.firstName || ''} ${user?.lastName || ''}`}</p>
                     <p>{user?.email}</p>
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator /> {/* A visual separator */}
