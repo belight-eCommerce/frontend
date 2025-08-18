@@ -1,7 +1,9 @@
 "use client";
+import PublicFooter from "@/components/footer/PublicFooter";
+import PublicHeader from "@/components/header/PublicHeader";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { QueryProvider } from "@/providers/QueryProvider";
-import React from "react";
+import { ReduxProvider } from "@/providers/ReduxProvider";
 
 export default function AuthLayout({
   children,
@@ -10,11 +12,13 @@ export default function AuthLayout({
 }) {
   return (
     <ThemeProvider>
-      <QueryProvider>
-        <div className="min-h-screen w-full items-center justify-center">
+      <ReduxProvider>
+        <QueryProvider>
+          <PublicHeader />
           {children}
-        </div>
-      </QueryProvider>
+          <PublicFooter />
+        </QueryProvider>
+      </ReduxProvider>
     </ThemeProvider>
   );
 }

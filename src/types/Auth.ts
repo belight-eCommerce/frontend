@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { User } from "./User";
 
 export const loginFormSchema = z.object({
     email: z.string().email("Invalid email address"),
@@ -21,7 +20,6 @@ export const forgotPasswordFormSchema = z.object({
 export type LoginCredentials = z.infer<typeof loginFormSchema>;
 export type ResetPasswordFormValue = z.infer<typeof resetPasswordFormSchema>;
 export type ForgotPasswordFormValue = z.infer<typeof forgotPasswordFormSchema>;
-export interface LoginResponse extends User {
+export interface LoginResponse {
     access_token: string;
-    refresh_token: string;
 };

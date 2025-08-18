@@ -7,8 +7,10 @@ import AppSidebar from "@/layout/AppSidebar";
 import Backdrop from "@/layout/Backdrop";
 import AppHeader from "@/layout/AppHeader";
 import AppFooter from "@/layout/AppFooter";
+import { ReduxProvider } from "@/providers/ReduxProvider";
+import withRBAC from "@/wrappers/withRBAC";
 
-export default function AdminLayout({ children }: {
+function AdminLayout({ children }: {
     children: React.ReactNode;
 }) {
     const { isExpanded, isHovered, isMobileOpen } = useSidebar();
@@ -21,30 +23,42 @@ export default function AdminLayout({ children }: {
             : "lg:ml-[90px]";
 
     return (
-        <QueryProvider>
-            <div className="flex h-screen">
-                {/* Sidebar */}
-                <AppSidebar />
+        <ReduxProvider>
+            <QueryProvider>
+                <div className="flex h-screen">
+                    {/* Sidebar */}
+                    <AppSidebar />
 
-                {/* Backdrop (position it absolutely if it's an overlay) */}
-                <Backdrop />
+                    {/* Backdrop (position it absolutely if it's an overlay) */}
+                    <Backdrop />
 
-                {/* Main Content Area */}
-                <div
-                    className={`flex flex-col flex-1 transition-all duration-300 ease-in-out ${mainContentMargin}`}
-                >
-                    {/* Header */}
-                    <AppHeader />
+                    {/* Main Content Area */}
+                    <div
+                        className={`flex flex-col flex-1 transition-all duration-300 ease-in-out ${mainContentMargin}`}
+                    >
+                        {/* Header */}
+                        <AppHeader />
 
-                    {/* Page Content */}
-                    <div className="p-4 flex-1 md:p-6">
-                        {children}
+                        {/* Page Content */}
+                        <div className="p-4 flex-1 md:p-6">
+                            {children}
+                        </div>
+
+                        {/* Footer */}
+                        <AppFooter />
                     </div>
-
-                    {/* Footer */}
-                    <AppFooter />
                 </div>
-            </div>
-        </QueryProvider>
+            </QueryProvider>
+        </ReduxProvider>
     );
 }
+
+
+export default withRBAC({
+    allowedRoles: {
+        admin: true,
+        seller: false,
+        buyer: false
+    },
+    requireAuth: true
+})(AdminLayout);

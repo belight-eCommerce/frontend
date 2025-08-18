@@ -1,4 +1,5 @@
-// app/product-analytics/page.tsx
+'use client'
+
 import React from 'react';
 
 const ProductAnalyticsPage: React.FC = () => {

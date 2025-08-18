@@ -1,3 +1,7 @@
+'use client'
+
+import withRBAC from "@/wrappers/withRBAC";
+
 const summary = [
   { label: "Pending Orders", value: 2, color: "text-blue-600" },
   { label: "Delivered", value: 8, color: "text-green-600" },
@@ -23,7 +27,7 @@ const statusColors: Record<string, string> = {
   Cancelled: "bg-red-100 text-red-700 border-red-300",
 };
 
-export default function DashboardPage() {
+function DashboardPage() {
   return (
 
     <main className="max-w-6xl mx-auto px-4 py-8">
@@ -83,3 +87,12 @@ export default function DashboardPage() {
     </main>
   );
 }
+
+
+export default withRBAC({
+  allowedRoles: {
+    seller: true,
+  },
+  fallbackPath: '/supplier/login',
+  requireAuth: true
+})(DashboardPage);

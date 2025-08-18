@@ -1,19 +1,25 @@
 import PublicHeader from "@/components/header/PublicHeader";
 import PublicFooter from "@/components/footer/PublicFooter";
 import { ThemeProvider } from "@/context/ThemeContext";
+import { ReduxProvider } from "@/providers/ReduxProvider";
+import { QueryProvider } from "@/providers/QueryProvider";
 
 export default function Layout({ children }: {
     children: React.ReactNode;
 }) {
     return (
-        <ThemeProvider>
-            <div className="flex flex-col min-h-screen">
-                <PublicHeader />
-                <main className="flex-1 grid">
-                    {children}
-                </main>
-                <PublicFooter />
-            </div>
-        </ThemeProvider>
+        <ReduxProvider>
+            <QueryProvider>
+                <ThemeProvider>
+                    <div className="flex flex-col min-h-screen">
+                        <PublicHeader />
+                        <main className="flex-1 grid">
+                            {children}
+                        </main>
+                        <PublicFooter />
+                    </div>
+                </ThemeProvider>
+            </QueryProvider>
+        </ReduxProvider>
     )
 }

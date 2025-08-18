@@ -1,4 +1,6 @@
-// app/inventory-management/page.tsx
+'use client'
+
+import withRBAC from '@/wrappers/withRBAC';
 import React from 'react';
 const InventoryManagementPage: React.FC = () => {
   // Dummy data for the table
@@ -136,4 +138,9 @@ const InventoryManagementPage: React.FC = () => {
   );
 };
 
-export default InventoryManagementPage;
+export default withRBAC({
+  allowedRoles: {
+    seller: true,
+  },
+  requireAuth: true,
+})(InventoryManagementPage);
