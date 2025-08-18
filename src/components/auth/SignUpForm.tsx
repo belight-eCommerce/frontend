@@ -94,7 +94,7 @@ export default function SignUpForm() {
       <div className="flex flex-col justify-center flex-1 w-full max-w-md mx-auto px-4">
         <div className="mb-8">
           <h1 className="text-2xl font-semibold tracking-tight mb-2">
-            Create an account {form.getValues("role")}
+            Create an account
           </h1>
           <p className="text-sm text-muted-foreground">
             Enter your details below to create your account
