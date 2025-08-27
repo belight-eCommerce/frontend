@@ -13,17 +13,16 @@ interface AdminLoginResponse {
     role: string;
 }
 
-// Admin login API function with fallback route
+// Admin login API: prefer /auth/login, fallback to /auth/admin/login
 export const adminLogin = async (credentials: AdminSignInSchema) => {
     try {
-        const primary = await axiosClient.post<SingleResponse<AdminLoginResponse>>(`${prefix}/admin/login`, {
+        const primary = await axiosClient.post<SingleResponse<AdminLoginResponse>>(`${prefix}/login`, {
             ...credentials,
             role: "admin",
         });
         return primary.data;
     } catch {
-        // Fallback to /auth/login if /auth/admin/login is not available
-        const fallback = await axiosClient.post<SingleResponse<AdminLoginResponse>>(`${prefix}/login`, {
+        const fallback = await axiosClient.post<SingleResponse<AdminLoginResponse>>(`${prefix}/admin/login`, {
             ...credentials,
             role: "admin",
         });
@@ -37,16 +36,15 @@ export const adminLogout = async () => {
     return response.data;
 };
 
-// Get admin profile API function
+// Get admin profile API function with fallback to /auth/me
 export const getAdminProfile = async () => {
-    const response = await axiosClient.get<SingleResponse<User>>(`${prefix}/admin/profile`);
-    return response.data;
-};
-
-// Get admin user info API function (alternative endpoint)
-export const getAdminUserInfo = async () => {
-    const response = await axiosClient.get<SingleResponse<User>>(`${prefix}/admin/me`);
-    return response.data;
+    try {
+        const response = await axiosClient.get<SingleResponse<User>>(`${prefix}/admin/profile`);
+        return response.data;
+    } catch {
+        const response = await axiosClient.get<SingleResponse<User>>(`${prefix}/me`);
+        return response.data;
+    }
 };
 
 // Get admin user info by ID API function
