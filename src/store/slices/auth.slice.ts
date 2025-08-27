@@ -20,6 +20,12 @@ export interface AuthState {
     user: User | null;
     role: UserRole | null;
     permissions: UserPermissions;
+    // Loading states
+    isLoading: boolean;
+    isUserLoading: boolean;
+    // Error states
+    error: string | null;
+    userError: string | null;
 }
 
 const getDefaultPermissions = (role: UserRole | null): UserPermissions => {
@@ -57,7 +63,11 @@ const initialState: AuthState = {
     refreshToken: null,
     user: null,
     role: null,
-    permissions: getDefaultPermissions(null)
+    permissions: getDefaultPermissions(null),
+    isLoading: false,
+    isUserLoading: false,
+    error: null,
+    userError: null
 };
 
 export const authSlice = createSlice({
@@ -80,13 +90,37 @@ export const authSlice = createSlice({
             state.role = role;
             state.isAuthenticated = true;
             state.permissions = getDefaultPermissions(role);
+            state.isLoading = false;
+            state.error = null;
         },
         updateUser: (state, action: PayloadAction<{ user: User }>) => {
             state.user = action.payload.user;
+            state.isUserLoading = false;
+            state.userError = null;
         },
         updateRole: (state, action: PayloadAction<{ role: UserRole }>) => {
             state.role = action.payload.role;
             state.permissions = getDefaultPermissions(action.payload.role);
+        },
+        // Loading states
+        setLoading: (state, action: PayloadAction<boolean>) => {
+            state.isLoading = action.payload;
+        },
+        setUserLoading: (state, action: PayloadAction<boolean>) => {
+            state.isUserLoading = action.payload;
+        },
+        // Error states
+        setError: (state, action: PayloadAction<string | null>) => {
+            state.error = action.payload;
+            state.isLoading = false;
+        },
+        setUserError: (state, action: PayloadAction<string | null>) => {
+            state.userError = action.payload;
+            state.isUserLoading = false;
+        },
+        clearErrors: (state) => {
+            state.error = null;
+            state.userError = null;
         },
         logout: () => {
             return {
@@ -106,10 +140,28 @@ export const selectRefreshToken = (state: { auth: AuthState }) => state.auth.ref
 export const selectRole = (state: { auth: AuthState }) => state.auth.role;
 export const selectPermissions = (state: { auth: AuthState }) => state.auth.permissions;
 
+// Loading selectors
+export const selectIsLoading = (state: { auth: AuthState }) => state.auth.isLoading;
+export const selectIsUserLoading = (state: { auth: AuthState }) => state.auth.isUserLoading;
+
+// Error selectors
+export const selectError = (state: { auth: AuthState }) => state.auth.error;
+export const selectUserError = (state: { auth: AuthState }) => state.auth.userError;
+
 // Route access selectors
 export const selectCanAccessAdmin = (state: { auth: AuthState }) => state.auth.permissions.canAccessAdmin;
 export const selectCanAccessSeller = (state: { auth: AuthState }) => state.auth.permissions.canAccessSeller;
 export const selectCanAccessBuyer = (state: { auth: AuthState }) => state.auth.permissions.canAccessBuyer;
 
-export const { setCredentials, updateUser, updateRole, logout } = authSlice.actions;
+export const { 
+    setCredentials, 
+    updateUser, 
+    updateRole, 
+    setLoading, 
+    setUserLoading, 
+    setError, 
+    setUserError, 
+    clearErrors, 
+    logout 
+} = authSlice.actions;
 export default authSlice.reducer;

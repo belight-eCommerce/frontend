@@ -1,6 +1,6 @@
 'use client';
-import SignInForm from "@/components/auth/SignInForm";
+import AdminSignInForm from "@/components/auth/AdminSignInForm";
 
-export default function SignIn() {
-  return <SignInForm />;
+export default function AdminSignIn() {
+  return <AdminSignInForm />;
 }
